@@ -1,6 +1,3 @@
-import sqlite3
-
-
 # транслитератор с немецкого на русский
 def de_to_ru(inp_word):
     word = inp_word[:]

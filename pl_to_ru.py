@@ -1,6 +1,3 @@
-import sqlite3
-
-
 # транслитератор с польского на русский
 def pl_to_ru(inp_word):
 
