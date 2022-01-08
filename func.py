@@ -5,6 +5,7 @@ from pl_to_ru import pl_to_ru
 from de_to_ru import de_to_ru
 from cleaner import cleaner
 from gc import collect
+import xlsxwriter as xw
 
 
 def func(way_to_file, way_to_save, object_o, file_name='results_database'):
@@ -105,6 +106,21 @@ def func(way_to_file, way_to_save, object_o, file_name='results_database'):
     collect()
 
     file_sql.commit()
+    object_o.create.setText('Create the db- and xlsx-files')
+
+    main_list = cur.execute('SELECT * FROM Companies')
+    header = tuple(map(lambda x: x[0], main_list.description))
+
+    wb = xw.Workbook(f'{file_name}.xlsx', {'strings_to_urls': False})
+    ws = wb.add_worksheet()
+
+    for i, elem in enumerate(header):
+        ws.write(0, i, elem)
+
+    for i, elem in enumerate(main_list):
+        for j, val in enumerate(elem):
+            ws.write(i + 1, j, val)
+
+    wb.close()
     file_sql.close()
-    print('Ended')
-    object_o.create.setText('Create the .db-file')
+    print('ended')

@@ -29,7 +29,7 @@ class App(QWidget):
         self.inp_nme = QLineEdit(self)
 
         self.create = QPushButton(self)
-        self.create.setText('Create the .db-file')
+        self.create.setText('Create the db- and xlsx-files')
         self.create.setEnabled(False)
         self.create.clicked.connect(self.create_table)
 
